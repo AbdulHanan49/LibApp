@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Database\\DBProjectVS\\LibApp\\LibApp\\LibApp.csproj": {}
+    "D:\\Database\\Database Project\\LibApp\\LibApp\\LibApp.csproj": {}
   },
   "projects": {
-    "D:\\Database\\DBProjectVS\\LibApp\\LibApp\\LibApp.csproj": {
+    "D:\\Database\\Database Project\\LibApp\\LibApp\\LibApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Database\\DBProjectVS\\LibApp\\LibApp\\LibApp.csproj",
+        "projectUniqueName": "D:\\Database\\Database Project\\LibApp\\LibApp\\LibApp.csproj",
         "projectName": "LibApp",
-        "projectPath": "D:\\Database\\DBProjectVS\\LibApp\\LibApp\\LibApp.csproj",
+        "projectPath": "D:\\Database\\Database Project\\LibApp\\LibApp\\LibApp.csproj",
         "packagesPath": "C:\\Users\\Abdul Hanan\\.nuget\\packages\\",
-        "outputPath": "D:\\Database\\DBProjectVS\\LibApp\\LibApp\\obj\\",
+        "outputPath": "D:\\Database\\Database Project\\LibApp\\LibApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

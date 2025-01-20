@@ -1,0 +1,143 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 1rem;
+    }
+
+    .calendar-cell {
+        text-align: center;
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="flex flex-1">
+
+    <aside class="bg-blue-700 text-white w-16 md:w-1/6 p-4 flex flex-col items-center space-y-4">
+        <!-- Sidebar Items -->
+
+        <a asp-controller="Admin" asp-action="AdminHome" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-home"></i> <span class="sidebar-text hidden md:inline">Dashboard</span>
+        </a>
+        <a asp-controller="Admin" asp-action="Catalog" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-box"></i> <span class="sidebar-text hidden md:inline">Catalog</span>
+        </a>
+        <a asp-controller="Admin" asp-action="AddBook" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-plus-circle"></i> <span class="sidebar-text hidden md:inline">Add Book</span>
+        </a>
+        <a asp-controller="Admin" asp-action="ListUsers" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-users"></i> <span class="sidebar-text hidden md:inline">All Users</span>
+        </a>
+        <a asp-controller="Admin" asp-action="ListBooks" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-book"></i> <span class="sidebar-text hidden md:inline">All Books</span>
+        </a>
+        <a asp-controller="Admin" asp-action="Reports" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-chart-line"></i> <span class="sidebar-text hidden md:inline">Reports</span>
+        </a>
+    </aside>
+
+
+
+    <main class="flex-1 overflow-y-auto scrollbar-hide p-6 space-y-6">
+
+        <!-- Reports Heading -->
+        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col space-y-4">
+            <h3 class="text-2xl font-semibold text-gray-800">Library Reports & Analytics</h3>
+            <p class="text-gray-600">Generate and review detailed reports on book borrowings, user activity, overdue fines, and more.</p>
+        </div>
+
+        <!-- Reports Graphs -->
+        <div class="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Borrowing Activity Chart -->
+            <div class="col-span-1 bg-white p-4 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-700">Borrowing Activity</h4>
+                <canvas id="borrowingActivityChart"></canvas>
+            </div>
+
+            <!-- User Activity Chart -->
+            <div class="col-span-1 bg-white p-4 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-700">User Activity</h4>
+                <canvas id="userActivityChart"></canvas>
+            </div>
+
+            <!-- Overdue Fines Chart -->
+            <div class="col-span-1 bg-white p-4 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-700">Overdue Fines</h4>
+                <canvas id="overdueFinesChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+
+
+ 
+</div>
+
+
+@section Scripts {
+    <script>
+        // Borrowing Activity Chart
+        var ctx1 = document.getElementById('borrowingActivityChart').getContext('2d');
+        var borrowingActivityChart = new Chart(ctx1, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+              label: 'Books Borrowed',
+              data: [150, 200, 180, 220, 250, 300],
+              borderColor: '#3490dc',
+              fill: false,
+              tension: 0.1
+            }]
+          }
+        });
+
+        // User Activity Chart
+        var ctx2 = document.getElementById('userActivityChart').getContext('2d');
+        var userActivityChart = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+            labels: ['Active', 'Inactive'],
+            datasets: [{
+              label: 'User Activity',
+              data: [300, 50],
+              backgroundColor: ['#38b2ac', '#e53e3e']
+            }]
+          }
+        });
+
+        // Overdue Fines Chart
+        var ctx3 = document.getElementById('overdueFinesChart').getContext('2d');
+        var overdueFinesChart = new Chart(ctx3, {
+          type: 'pie',
+          data: {
+            labels: ['Paid', 'Unpaid'],
+            datasets: [{
+              label: 'Fines Status',
+              data: [75, 25],
+              backgroundColor: ['#4caf50', '#f87171']
+            }]
+          }
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

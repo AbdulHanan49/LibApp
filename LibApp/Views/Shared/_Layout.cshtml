@@ -1,51 +1,121 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LibApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/LibApp.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <partial name="_LoginPartial" />
 
-                    </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="path-to-tailwind.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="py-6 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between">
+
+                <div class="flex items-center space-x-3">
+                    <div class="text-white text-3xl">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="text-white text-2xl font-extrabold tracking-wider">
+                        LibApp
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Account/Logout"
+                           class="relative flex items-center justify-center px-5 py-2 text-white text-sm font-bold uppercase tracking-wide border-t-4 border-b-4 border-white transition-transform duration-500 ease-in-out hover:bg-white hover:text-blue-900 hover:-translate-y-1 hover:shadow-lg">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login"
+                           class="relative flex items-center justify-center px-5 py-2 text-white text-sm font-bold uppercase tracking-wide border-t-4 border-b-4 border-white transition-transform duration-500 ease-in-out hover:bg-white hover:text-blue-900 hover:-translate-y-1 hover:shadow-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Login
+                        </a>
+                        <a href="/Account/Register"
+                           class="relative flex items-center justify-center px-5 py-2 text-white text-sm font-bold uppercase tracking-wide border-t-4 border-b-4 border-white transition-transform duration-500 ease-in-out hover:bg-white hover:text-blue-900 hover:-translate-y-1 hover:shadow-lg">
+                            <i class="fas fa-user-plus mr-2"></i> Register
+                        </a>
+                    }
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
+
+    <nav class="bg-blue-900 mx-auto my-4 p-4 rounded-lg w-11/12">
+        <ul class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6">
+            <li class="group">
+                <a href="/Home/Index"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Home
+                </a>
+            </li>
+            <li class="group">
+                <a asp-controller="Home" asp-action="OurBooks"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Our Books
+                </a>
+            </li>
+            <li class="group">
+                <a asp-controller="Home" asp-action="Search"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Search
+                </a>
+            </li>
+            <li class="group">
+                <a href="/Home/Cart"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Cart
+                </a>
+            </li>
+            <li class="group">
+                <a asp-controller="Home" asp-action="Services"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Our Services
+                </a>
+            </li>
+            
+            <li class="group">
+                <a asp-controller="Home" asp-action="Privacy"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Privacy Policy
+                </a>
+
+            </li>
+            <li class="group">
+                <a href="/Home/Contact"
+                   class="text-white text-lg font-sans p-3 block relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-white after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-500 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left">
+                    Contact
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="container mx-auto p-6">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - LibApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-blue-900 text-gray-200 py-8 ">
+        <div class="max-w-screen-xl mx-auto text-center">
+            <h2 class="text-xl font-serif mb-4">Explore the World of Knowledge</h2>
+            <p class="text-sm mb-4">© 2024 SmartLib. All Rights Reserved.</p>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
+
 </html>
+

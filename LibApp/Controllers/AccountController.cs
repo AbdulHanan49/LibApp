@@ -2,7 +2,6 @@
 using LibApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LibApp.Controllers
 {
@@ -21,27 +20,45 @@ namespace LibApp.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var user1 = await userManager.FindByEmailAsync(model.Email);
+                if (user1 == null)
+                {
+                    ModelState.AddModelError("", "No user found with that email.");
+                    return View(model);
+                }
+
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var user = await userManager.FindByEmailAsync(model.Email);
+                    var roles = await userManager.GetRolesAsync(user);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("AdminHome", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Email or password is incorrect");
+                    ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
-
-
                 }
             }
             return View(model);
         }
+
         public IActionResult Register()
         {
             return View();
@@ -80,6 +97,7 @@ namespace LibApp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
         {

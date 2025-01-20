@@ -1,8 +1,135 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Library Management System";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="bg-gradient-to-b from-blue-100 to-blue-50">
+
+    <div class="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-500 text-white py-16">
+        <div class="text-center px-6 max-w-3xl mx-auto">
+            <h1 class="text-5xl font-extrabold mb-4">Welcome to <span id="username" class="text-blue-200">LibApp</span></h1>
+            <p class="text-lg mb-6">Your gateway to a world of knowledge and efficient library management.</p>
+            <a href="#explore" class="relative inline-flex items-center justify-center px-6 py-3 text-lg font-semibold uppercase tracking-wide text-blue-800 bg-white rounded-full shadow-lg transform transition duration-300 hover:bg-blue-200 hover:scale-105 hover:text-blue-900">
+                <i class="mr-2"></i> Explore Now
+            </a>
+        </div>
+    </div>
+
+    <div class=" py-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <div class="quotation-carousel relative h-24 flex justify-center">
+                <div class="quotation-item text-lg font-semibold italic text-gray-600 absolute opacity-0 transition-opacity duration-1000">“LibApp is a game-changer in library management, making the process efficient and easy to use.”</div>
+                <div class="quotation-item text-lg font-semibold italic text-gray-600 absolute opacity-0 transition-opacity duration-1000">“The most user-friendly library management system I’ve ever used. Highly recommend it!”</div>
+                <div class="quotation-item text-lg font-semibold italic text-gray-600 absolute opacity-0 transition-opacity duration-1000">“With LibApp, managing a library has never been so easy and intuitive.”</div>
+            </div>
+            <div class="flex justify-center mt-4 space-x-2">
+                <span class="dot w-3 h-3 bg-blue-400 rounded-full opacity-50"></span>
+                <span class="dot w-3 h-3 bg-blue-400 rounded-full opacity-50"></span>
+                <span class="dot w-3 h-3 bg-blue-400 rounded-full opacity-50"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="how-it-works" class="py-16 bg-blue-900 text-white text-center w-full">
+        <h2 class="text-4xl font-semibold mb-6">How It Works</h2>
+        <p class="text-gray-300 mb-8">Our Library Management System is designed to be user-friendly and efficient, offering key features:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Easy Library Management</h3>
+                <p class="text-gray-300">Quickly organize and manage your library’s books in one place.</p>
+            </div>
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Track Borrowers</h3>
+                <p class="text-gray-300">Monitor who borrows books and for how long, ensuring efficient tracking.</p>
+            </div>
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Generate Reports</h3>
+                <p class="text-gray-300">Understand your library's performance with detailed reporting tools.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-16">
+        <div class="text-center">
+            <h2 class="text-4xl font-semibold mb-6">Explore Our Visuals</h2>
+            <p class="text-black mb-6">Take a look at some images from our library management system:</p>
+            <div class="relative w-full overflow-hidden">
+                <div class="image-carousel flex transition-transform duration-700 ease-in-out" id="carousel">
+                    <img src="https://c4.wallpaperflare.com/wallpaper/526/8/1002/library-interior-interior-design-books-wallpaper-preview.jpg" alt="Library Image 1" class="carousel-image w-full h-auto object-cover">
+                    <img src="https://images5.alphacoders.com/919/thumb-1920-919004.jpg" alt="Library Image 2" class="carousel-image w-full h-auto object-cover">
+                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20230425/pngtree-huge-library-with-old-books-that-have-multiple-doors-image_2513239.jpg" alt="Library Image 3" class="carousel-image w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="explore" class="py-16 bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center w-full">
+        <h2 class="text-4xl font-bold mb-6">Explore Our Features</h2>
+        <p class="text-gray-300 mb-6">Discover tools to manage and track your library effectively.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Manage Books</h3>
+                <p class="text-gray-300">Easily add, remove, and categorize your books.</p>
+            </div>
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Track Borrowers</h3>
+                <p class="text-gray-300">Keep track of book borrowings with ease.</p>
+            </div>
+            <div class="bg-blue-700 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Generate Reports</h3>
+                <p class="text-gray-300">Analyze inventory and borrowing activity in detail.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="user-says" class="py-16 bg-blue-900 text-white text-center w-full">
+        <h2 class="text-4xl font-bold mb-6">What Our Users Say</h2>
+        <div class="flex justify-center space-x-6">
+            <div class="user-story bg-white text-blue-900 p-6 rounded-lg shadow-lg w-80">
+                <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User Image" class="w-24 h-24 mx-auto rounded-full mb-4">
+                <p class="italic mb-4">“LibApp has made managing my books so much easier! It's essential for any library.”</p>
+                <p class="font-bold">John Doe</p>
+                <p class="text-gray-600">Library Manager</p>
+            </div>
+            <div class="user-story bg-white text-blue-900 p-6 rounded-lg shadow-lg w-80">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Image" class="w-24 h-24 mx-auto rounded-full mb-4">
+                <p class="italic mb-4">“A brilliant system! Managing reports is just a click away.”</p>
+                <p class="font-bold">Jane Smith</p>
+                <p class="text-gray-600">Librarian</p>
+            </div>
+            <div class="user-story bg-white text-blue-900 p-6 rounded-lg shadow-lg w-80">
+                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="User Image" class="w-24 h-24 mx-auto rounded-full mb-4">
+                <p class="italic mb-4">“An intuitive platform for library operations.”</p>
+                <p class="font-bold">Robert Lee</p>
+                <p class="text-gray-600">IT Specialist</p>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
+
+
+<script>
+    const quotations = document.querySelectorAll('.quotation-item');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    function showQuotation(index) {
+        quotations.forEach((item, i) => item.style.opacity = i === index ? '1' : '0');
+        dots.forEach((dot, i) => dot.style.opacity = i === index ? '1' : '0.5');
+    }
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % quotations.length;
+        showQuotation(currentIndex);
+    }, 4000);
+
+    showQuotation(currentIndex);
+
+
+
+
+</script>

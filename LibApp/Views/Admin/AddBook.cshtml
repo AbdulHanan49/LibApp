@@ -1,0 +1,161 @@
+﻿@using LibApp.ViewModels;
+@model BookViewModel;
+
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+
+    /* Gradient Cards with Dark to Light Blue */
+    .gradient-card {
+        background: linear-gradient(145deg, #1e3a8a, #3b82f6); /* Dark Blue to Light Blue */
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Placeholder Style */
+    .input-field::placeholder {
+        color: rgba(0, 0, 0, 0.6); /* Soft color for placeholder */
+    }
+
+    /* Input Field Text */
+    .input-field {
+        color: black; /* Ensure the text the user enters is black */
+    }
+
+    /* Remove background gradient for the body */
+    body {
+        background-color: #f0f4f8; /* Light solid color background */
+    }
+
+    .input-field:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+    }
+</style>
+
+<div class="flex flex-1">
+
+    <aside class="bg-blue-700 text-white w-16 md:w-1/6 p-4 flex flex-col items-center space-y-4">
+        <!-- Sidebar Items -->
+
+        <a asp-controller="Admin" asp-action="AdminHome" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-home"></i> <span class="sidebar-text hidden md:inline">Dashboard</span>
+        </a>
+        <a asp-controller="Admin" asp-action="Catalog" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-box"></i> <span class="sidebar-text hidden md:inline">Catalog</span>
+        </a>
+        <a asp-controller="Admin" asp-action="AddBook" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-plus-circle"></i> <span class="sidebar-text hidden md:inline">Add Book</span>
+        </a>
+        <a asp-controller="Admin" asp-action="ListUsers" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-users"></i> <span class="sidebar-text hidden md:inline">All Users</span>
+        </a>
+
+
+        <a asp-controller="Admin" asp-action="ListBooks" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-book"></i> <span class="sidebar-text hidden md:inline">All Books</span>
+        </a>
+
+        <a asp-controller="Admin" asp-action="Reports" class="sidebar-item w-full py-3 px-4 hover:bg-blue-600 flex items-center justify-center space-x-2">
+            <i class="fas fa-chart-line"></i> <span class="sidebar-text hidden md:inline">Reports</span>
+        </a>
+    </aside>
+
+
+
+
+    @* <form method="post" enctype="multipart/form-data"> *@
+    @*     <!-- Form fields for Title, Author, Category, etc. --> *@
+    @*     <input type="text" name="Title" /> *@
+    @*     <input type="text" name="Author" /> *@
+    @*     <input type="text" name="Category" /> *@
+    @*     <input type="number" name="Price" /> *@
+    @*     <input type="number" name="Quantity" /> *@
+    @*     <input type="file" name="CoverImage" /> *@
+
+    @*     <div class="flex justify-end space-x-4"> *@
+    @*         <button type="button" onclick="cancelForm()" class="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all duration-200">Cancel</button> *@
+    @*         <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md hover:from-blue-700 hover:to-indigo-700 transition-all duration-200">Add</button> *@
+    @*     </div> *@
+    @* </form> *@
+
+    <main class="flex-1 overflow-y-auto scrollbar-hide p-6 space-y-6">
+        <!-- Add Book Heading Card -->
+        <div class="bg-white p-6 rounded-lg shadow-xl flex flex-col space-y-4">
+            <h3 class="text-3xl font-semibold text-gray-800">Add Book</h3>
+            <p class="text-gray-600">Easily add new books to the library collection by entering details such as title, author, genre, and availability status.</p>
+        </div>
+
+        <!-- Add Book Form -->
+        <div class="bg-white p-8 rounded-lg shadow-xl space-y-6">
+            <form method="POST" enctype="multipart/form-data" class="max-w-4xl mx-auto p-6 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 rounded-lg shadow-lg">
+                <!-- Title Input -->
+                <div class="mb-6">
+                    <label for="title" class="block text-white font-semibold text-lg">Title of the Book</label>
+                    <input type="text" id="title" name="Title" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter Book Title" required>
+                </div>
+
+                <!-- Author Input -->
+                <div class="mb-6">
+                    <label for="author" class="block text-white font-semibold text-lg">Author of the Book</label>
+                    <input type="text" id="author" name="Author" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter Author Name" required>
+                </div>
+
+                <!-- Category Dropdown -->
+                <div class="mb-6">
+                    <label for="category" class="block text-white font-semibold text-lg">Category of the Book</label>
+                    <select id="category" name="Category" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                        <option value="" disabled selected>Select Book Category</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Science">Science</option>
+                        <option value="Technology">Technology</option>
+                        <option value="History">History</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Fantasy">Fantasy</option>
+                    </select>
+                </div>
+
+                <!-- Price Input -->
+                <div class="mb-6">
+                    <label for="price" class="block text-white font-semibold text-lg">Price of the Book</label>
+                    <input type="number" id="price" name="Price" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter Price" required>
+                </div>
+
+                <!-- Quantity Input -->
+                <div class="mb-6">
+                    <label for="quantity" class="block text-white font-semibold text-lg">Quantity of the Book</label>
+                    <input type="number" id="quantity" name="Quantity" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter Quantity" required>
+                </div>
+
+                <!-- Cover Image Input -->
+                <div class="mb-6">
+                    <label for="cover-image" class="block text-white font-semibold text-lg">Cover Image of the Book</label>
+                    <input type="file" id="cover-image" name="CoverImage" class="mt-2 block w-full border-2 border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" accept="image/*" required>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="cancelForm()" class="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all duration-200 focus:outline-none">Cancel</button>
+                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 focus:outline-none">Add</button>
+                </div>
+            </form>
+
+
+        </div>
+    </main>
+
+
+</div>
+
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

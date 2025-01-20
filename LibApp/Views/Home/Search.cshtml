@@ -1,0 +1,52 @@
+﻿@model List<LibApp.Models.Book>
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Search Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gradient-to-r from-blue-500 to-teal-500 min-h-screen p-8">
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-extrabold text-white">Search for Books</h1>
+        <div class="w-32 h-1 bg-teal-500 mx-auto mt-4"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <form method="get" action="/Home/SearchBooks">
+            <div class="flex items-center space-x-4">
+                <input type="text"
+                       name="query"
+                       placeholder="Enter book title or keyword"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required />
+                <button type="submit"
+                        class="bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="mt-12 max-w-6xl mx-auto space-y-6">
+            <h2 class="text-2xl font-semibold text-blue-800">Search Results</h2>
+            @foreach (var book in Model)
+            {
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-800">@book.Title</h3>
+                    <p class="text-gray-600">Author: @book.Author</p>
+                    <p class="text-gray-600">Price: $@book.Price</p>
+                </div>
+            }
+        </div>
+    }
+    else if (Model != null)
+    {
+        <div class="mt-12 text-center text-gray-600">
+            <p>No books found for your search query.</p>
+        </div>
+    }
+</div>

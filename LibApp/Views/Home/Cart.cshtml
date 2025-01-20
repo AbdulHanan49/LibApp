@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gradient-to-r from-blue-500 to-teal-500 min-h-screen p-8">
+ 
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-white">Your Cart</h1>
+        <div class="w-32 h-1 bg-teal-500 mx-auto mt-4"></div>
+    </div>
+
+
+    <div class="max-w-6xl mx-auto space-y-8 px-6 sm:px-10">
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold text-blue-800">Books in Your Cart</h2>
+            <div class="mt-6">
+                <div class="space-y-6">
+
+                    <div class="flex items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-4">
+                            <img src="https://via.placeholder.com/100" alt="Book Image" class="w-24 h-32 object-cover rounded-md">
+                            <div>
+                                <h3 class="text-xl font-semibold text-blue-800">Book Title</h3>
+                                <p class="text-gray-600">Author: Author Name</p>
+                                <p class="text-gray-600">Price: $19.99</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                                Remove
+                            </button>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600">-</button>
+                                <span class="text-lg font-semibold">1</span>
+                                <button class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold text-blue-800">Cart Summary</h2>
+            <div class="mt-6">
+                <div class="flex justify-between py-3 border-b">
+                    <span class="text-gray-600 text-lg">Subtotal</span>
+                    <span class="text-lg font-semibold text-blue-800">$19.99</span>
+                </div>
+                <div class="flex justify-between py-3 border-b">
+                    <span class="text-gray-600 text-lg">Tax (5%)</span>
+                    <span class="text-lg font-semibold text-blue-800">$1.00</span>
+                </div>
+                <div class="flex justify-between py-3 border-b">
+                    <span class="text-gray-600 text-lg">Total</span>
+                    <span class="text-lg font-semibold text-teal-500">$20.99</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-8">
+            <button class="bg-teal-500 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</div>

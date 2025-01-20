@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LibApp.Models.Book>
+
+@{
+    ViewData["Title"] = "Our Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mx-auto px-4">
+    <div class="trending-section mt-10">
+        <h2 class="text-3xl font-bold text-center text-gray-800">Trending Books</h2>
+        <div class="trending-line w-32 h-1 bg-blue-500 mx-auto mt-2"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6">
+
+            @foreach (var book in Model)
+            {
+                <div class="card bg-blue-100 rounded-xl shadow-xl overflow-hidden border-2 border-blue-200 group w-full h-auto">
+                    <!-- Book Image -->
+                    <div class="relative">
+                        <img class="w-full h-64 object-cover transition-all group-hover:blur-sm"
+                             src="@Url.Content(book.CoverImagePath)"
+                             alt="Book Cover">
+
+                        <!-- Overlay on Hover -->
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-all">
+                            <!-- Title -->
+                            <div class="text-white text-2xl font-bold mb-2">@book.Title</div>
+                            <!-- Category -->
+                            <div class="text-white text-lg italic">Category: @book.Category</div>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <form asp-action="AddToCart" method="post">
+                            <input type="hidden" name="bookId" value="@book.Id" />
+                            <button class="w-full bg-gradient-to-r from-blue-500 to-blue-800 text-white py-3 rounded-lg shadow-lg transition-all hover:opacity-90 hover:scale-105 transform">
+                                Add To Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="categories-nav bg-blue-800 text-white py-4 mt-10">
+        <div class="container mx-auto flex justify-center space-x-8">
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Fiction</button>
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Non-Fiction</button>
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Science</button>
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Technology</button>
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Business</button>
+            <button class="category-btn text-lg font-semibold hover:text-blue-500 transition-all">Self-Help</button>
+        </div>
+    </div>
+</div>

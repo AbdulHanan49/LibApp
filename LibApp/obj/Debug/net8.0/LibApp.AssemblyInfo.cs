@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LibApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f189690faa4434406ffb3ff670acf26be2df7fa5")]
 [assembly: System.Reflection.AssemblyProductAttribute("LibApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LibApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
